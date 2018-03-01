@@ -22,25 +22,24 @@ def compare(user, cpu)
   if user == cpu
     p "You chose #{user} and the computer chose #{cpu}, You tied."
     playagain
+
   else
+    wl = "Lost"
     case
-    when user == "rock" && (cpu == "paper" || cpu == "spock") then lose(user, cpu)
-    when user == "paper" && (cpu == "lizard" || cpu == "scissors") then lose(user, cpu)
-    when user == "scissors" && (cpu == "rock" || cpu == "spock") then lose(user, cpu)
-    when user == "spock" && (cpu == "paper" || cpu == "lizard") then lose(user, cpu)
-    when user == "lizard" && (cpu == "rock" || cpu == "scissors") then lose(user, cpu)
-    else win(user, cpu)
+    when user == "rock" && (cpu == "paper" || cpu == "spock") then win(user, cpu, wl)
+    when user == "paper" && (cpu == "lizard" || cpu == "scissors") then win(user, cpu, wl)
+    when user == "scissors" && (cpu == "rock" || cpu == "spock") then win(user, cpu, wl)
+    when user == "spock" && (cpu == "paper" || cpu == "lizard") then win(user, cpu, wl)
+    when user == "lizard" && (cpu == "rock" || cpu == "scissors") then win(user, cpu, wl)
+    else
+      wl = "WON"
+      win(user, cpu, wl)
     end
   end
 end
 
-def win(user, cpu)
-  p "You chose #{user} and the computer chose #{cpu}, You won."
-  playagain
-end
-
-def lose(user, cpu)
-  p "You chose #{user} and the computer chose #{cpu}, You lost."
+def win(user, cpu, wl)
+  p "You chose #{user} and the computer chose #{cpu}, You #{wl}."
   playagain
 end
 
